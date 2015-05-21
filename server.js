@@ -31,6 +31,9 @@ resetTime();
 io.on('connection', function(socket) {
   // Add a connection when someone connects
   connections += 1;
+  console.log('!!!!!!!!!!!!!!!!!');
+  console.log('SOMEONE CONNECTED');
+  console.log('!!!!!!!!!!!!!!!!!');
 
   // Tell everyone that someone else is connected
   io.emit('connectSuccess', {
@@ -40,6 +43,10 @@ io.on('connection', function(socket) {
   // Tell everyone that someone left
   socket.on('disconnect', function() {
     connections -= 1;
+
+    console.log('!!!!!!!!!!!!!!!!!');
+    console.log('SOMEONE LEFT');
+    console.log('!!!!!!!!!!!!!!!!!');
 
     // Using broad cast for no real reason but
     // in other circumstances this would emit the
@@ -53,6 +60,9 @@ io.on('connection', function(socket) {
   // Tell everyone that the button was pushed and
   // reset the timer
   socket.on('buttonPush', function() {
+    console.log('!!!!!!!!!!!!!!!!!');
+    console.log('BUTTON WAS PUSHED');
+    console.log('!!!!!!!!!!!!!!!!!');
     resetTime(buttonTime);
     io.emit('buttonTime', {buttonTime: buttonTime});
   });
