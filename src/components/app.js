@@ -3,7 +3,6 @@
 import React from 'react';
 import socket from '../socket';
 
-
 class App extends React.Component {
   constructor() {
     super();
@@ -50,7 +49,9 @@ class App extends React.Component {
 
 
   pushButton() {
-    socket.emit('buttonPush', 'pushButton');
+    socket.emit('buttonPush', 'pushButton', function(data) {
+      console.log(data)
+    });
   }
 
   render() {

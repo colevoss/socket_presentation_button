@@ -31,6 +31,7 @@ resetTime();
 io.on('connection', function(socket) {
   // Add a connection when someone connects
   connections += 1;
+
   console.log('!!!!!!!!!!!!!!!!!');
   console.log('SOMEONE CONNECTED');
   console.log('!!!!!!!!!!!!!!!!!');
@@ -59,12 +60,17 @@ io.on('connection', function(socket) {
 
   // Tell everyone that the button was pushed and
   // reset the timer
-  socket.on('buttonPush', function() {
+  socket.on('buttonPush', function(msg, fn) {
+    console.log(msg);
+    fn('This gets passed back to the client!');
+
     console.log('!!!!!!!!!!!!!!!!!');
     console.log('BUTTON WAS PUSHED');
     console.log('!!!!!!!!!!!!!!!!!');
+
     resetTime(buttonTime);
-    io.emit('buttonTime', {buttonTime: buttonTime});
+
+    socket.emit('buttonTime', {buttonTime: buttonTime});
   });
 
   console.log('Socket connection');
