@@ -84,5 +84,6 @@ function sendTime() {
 }
 
 
-server.listen(3000);
-console.log('Koa is listening on port 3000');
+var port = process.env.PORT || 3000;
+server.listen(port);
+console.log('Koa is listening on port ' + port);
