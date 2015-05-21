@@ -1,4 +1,5 @@
 var koa = require('koa');
+var favicon = require('koa-favicon');
 var logger = require('koa-logger');
 var koa_static = require('koa-static');
 var socket = require('socket.io');
@@ -14,7 +15,8 @@ function* responseTime(next) {
 
 app.use(responseTime)
    .use(logger())
-   .use(koa_static(__dirname + '/build'));
+   .use(koa_static(__dirname + '/build'))
+   .use(favicon(__dirname + '/build/favicon.ico'));
 
 var server = require('http').createServer(app.callback());
 io = socket(server);
